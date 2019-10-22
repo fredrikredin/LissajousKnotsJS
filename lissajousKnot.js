@@ -1,20 +1,27 @@
 class LissajousKnot
 {
-    constructor(x, y, color)
+    constructor(color)
     {
-        this.pos = { x: x, y: y };
         this.color = color;
+        this.points = [];
     }
 
-    draw()
+    draw(x, y, phi)
     {
         stroke(this.color);
-        ellipse(this.pos.x, this.pos.y, 15);
-    }
+        
+        var p = { x: x, y: y };
+        this.points.push(p)
+        
+        if (phi === 0)
+            this.points = [];
 
-    setCoordinates(x, y)
-    {
-        this.pos.x = x;
-        this.pos.y = y;
+        //this.points.forEach(p => point(p.x, p.y));
+        // dont drae every point - for performance
+        for (var i = 0; i < this.points.length; i++)
+            if(i % 2 === 0)
+                point(this.points[i].x, this.points[i].y)
+        
+        ellipse(p.x, p.y, 15);
     }
 }
