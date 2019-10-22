@@ -4,6 +4,8 @@
 
 Visualization of Lissajous knots using [p5.js](https://p5js.org/) framework. 
 
+DEMO: https://fredrikredin.github.io/LissajousKnotsJS/.
+
 A [Lissajous knot](https://en.wikipedia.org/wiki/Lissajous_knot) is one that can be parameterized by a single cosine function in each coordinate. Lissajous knots are highly symmetric, and for this reason, not all knots are Lissajous.
 
 
