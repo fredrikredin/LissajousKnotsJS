@@ -1,10 +1,11 @@
 let canvas;
 let orbitCount = 6;
-let fRate = 20;
+let fRate = 60;
 let orbits = [];
 let knots = [];
 let phi = 0;
-let delta_phi = 0.02;
+let delta_phi = 0.01;
+let backgr;
 
 function setup() {
 	init();
@@ -12,35 +13,32 @@ function setup() {
 }
 
 function draw() { // main p5 loop
-	background(0, 0, 0);
 
 	for (var i = 0; i < orbits.length; i++) {
+
+		orbits[i].updateCoordinates(phi);
 		orbits[i].draw();
-
+		
 		var x = orbits[i].getOrbitCoordinateX();
-
+		
 		for (var j = 0; j < orbits.length; j++) {
 			var y = orbits[j].getOrbitCoordinateY();
 			knots[i][j].draw(x, y, phi);
 		}
 	}
-
+	
 	phi += delta_phi;
-
-	if (phi >= 2 * PI) phi = 0;
-
-	orbits.forEach((orbit) => orbit.update(phi));
+	
+	if (phi >= 2 * PI)
+		populateCanvas();
 }
 
 function init() {
 	// create canvas
-	canvas = createCanvas(windowWidth - 40, windowHeight - 40);
+	backgr = color(30, 30, 30);
+	canvas = createCanvas(windowWidth - 50, windowHeight - 50);
 	canvas.parent('canvas-container');
-
-	// set p5 settings
-	noFill();
-	strokeWeight(2);
-
+	
 	// set settings
 	document.getElementById('orbitCountInput').value = orbitCount;
     document.getElementById('frameRateInput').value = fRate;
@@ -59,6 +57,7 @@ function onApplySettingsClicked() {
 }
 
 function populateCanvas() {
+	background(backgr);
     noLoop();
 
 	orbits = [];
@@ -69,7 +68,7 @@ function populateCanvas() {
 	populateOrbits();
     populateKnots();
     
-    loop();
+	loop();
 }
 
 function populateOrbits() {
