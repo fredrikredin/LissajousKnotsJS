@@ -17,7 +17,7 @@ class LissajousKnot
             this.points = [];
 
         //this.points.forEach(p => point(p.x, p.y));
-        // dont drae every point - for performance
+        // dont draw every point - for performance
         for (var i = 0; i < this.points.length; i++)
             if(i % 2 === 0)
                 point(this.points[i].x, this.points[i].y)

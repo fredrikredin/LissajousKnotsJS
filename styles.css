@@ -1,0 +1,19 @@
+body {
+	padding: 0;
+	margin: 10;
+	background-color: rgb(0, 0, 0);
+}
+
+.horizontalAlignment {
+    position: relative; 
+    overflow: hidden;
+    float: left;
+}
+
+.setting {
+    color: white;
+}
+
+.leftMargin {
+    margin-left: 20;
+}
