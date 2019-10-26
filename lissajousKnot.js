@@ -5,10 +5,10 @@ class LissajousKnot
         this.color = color;
     }
 
-    draw(x, y, phi)
+    draw(x, y)
     {
         stroke(this.color);
-        strokeWeight(4);
+        strokeWeight(2);
         point(x, y);
     }
 }

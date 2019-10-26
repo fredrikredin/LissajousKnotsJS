@@ -12,25 +12,33 @@ class LissajousOrbit
     draw()
     {
         stroke(this.color);
-        fill(backgr);
-        strokeWeight(5);
-        
-        ellipse(this.pos.x, this.pos.y, 2 * this.radius); // row
+        strokeWeight(2);
 
-        ellipse(this.pos.y, this.pos.x, 2 * this.radius); // col
+        // row ellipse
+        ellipse(this.pos.x, this.pos.y, 2 * this.radius); 
+        // col ellipse
+        ellipse(this.pos.y, this.pos.x, 2 * this.radius); 
         
-        strokeWeight(1);
+        stroke(BACKGR);
+        strokeWeight(3);
         
-        ellipse(this.getOrbitCoordinateX(), this.pos.y + this.orbit.y, 5); // row
-        
-        ellipse(this.pos.y + this.orbit.x, this.getOrbitCoordinateY(), 5); // column
-        
+        // row arc
+        arc(this.pos.x, this.pos.y, 
+            2 * this.radius, 2 * this.radius, 
+            PHI * this.velocity, 
+            PHI * this.velocity + 0.2);
+
+        // col arc
+        arc(this.pos.y, this.pos.x, 
+            2 * this.radius, 2 * this.radius, 
+            PHI * this.velocity, 
+            PHI * this.velocity + 0.2);
     }
 
-    updateCoordinates(phi)
+    updateCoordinates()
     {
-        this.orbit.x = this.radius * cos(phi * this.velocity);
-        this.orbit.y = this.radius * sin(phi * this.velocity);
+        this.orbit.x = this.radius * cos(PHI * this.velocity);
+        this.orbit.y = this.radius * sin(PHI * this.velocity);
     }
 
     getOrbitCoordinateX()

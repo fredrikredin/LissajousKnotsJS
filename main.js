@@ -1,11 +1,12 @@
 let canvas;
-let orbitCount = 6;
+let orbitCount = 9;
 let fRate = 60;
 let orbits = [];
 let knots = [];
-let phi = 0;
-let delta_phi = 0.01;
-let backgr;
+
+let RADIANS = 0;
+let DELTA_RADIANS = 0.007;
+let BACKGR;
 
 function setup() {
 	init();
@@ -16,33 +17,34 @@ function draw() { // main p5 loop
 
 	for (var i = 0; i < orbits.length; i++) {
 
-		orbits[i].updateCoordinates(phi);
+		orbits[i].updateCoordinates();
 		orbits[i].draw();
 		
 		var x = orbits[i].getOrbitCoordinateX();
 		
 		for (var j = 0; j < orbits.length; j++) {
 			var y = orbits[j].getOrbitCoordinateY();
-			knots[i][j].draw(x, y, phi);
+			knots[i][j].draw(x, y);
 		}
 	}
 	
-	phi += delta_phi;
+	PHI += DELTA_RADIANS;
 	
-	if (phi >= 2 * PI)
+	if (PHI >= 2 * PI)
 		populateCanvas();
 }
 
 function init() {
 	// create canvas
-	backgr = color(30, 30, 30);
+	BACKGR = color(30, 30, 30);
 	canvas = createCanvas(windowWidth - 50, windowHeight - 50);
 	canvas.parent('canvas-container');
+	fill(BACKGR);
 	
 	// set settings
 	document.getElementById('orbitCountInput').value = orbitCount;
     document.getElementById('frameRateInput').value = fRate;
-    document.getElementById('orbitVelocityInput').value = delta_phi;
+    document.getElementById('orbitVelocityInput').value = DELTA_RADIANS;
 
 	// add event listeners
 	document.getElementById('applySettingsBtn').addEventListener('click', onApplySettingsClicked);
@@ -51,18 +53,18 @@ function init() {
 function onApplySettingsClicked() {
 	orbitCount = parseInt(document.getElementById('orbitCountInput').value);
     fRate = parseInt(document.getElementById('frameRateInput').value);
-    delta_phi = parseFloat(document.getElementById('orbitVelocityInput').value);
+    DELTA_RADIANS = parseFloat(document.getElementById('orbitVelocityInput').value);
 
 	populateCanvas();
 }
 
 function populateCanvas() {
-	background(backgr);
+	background(BACKGR);
     noLoop();
 
 	orbits = [];
 	knots = [];
-    phi = 0;
+    PHI = 0;
 	frameRate(fRate);
 
 	populateOrbits();
