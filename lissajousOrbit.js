@@ -26,13 +26,13 @@ class LissajousOrbit
         arc(this.pos.x, this.pos.y, 
             2 * this.radius, 2 * this.radius, 
             PHI * this.velocity, 
-            PHI * this.velocity + 0.2);
+            PHI * this.velocity + 0.3);
 
         // col arc
         arc(this.pos.y, this.pos.x, 
             2 * this.radius, 2 * this.radius, 
             PHI * this.velocity, 
-            PHI * this.velocity + 0.2);
+            PHI * this.velocity + 0.3);
     }
 
     updateCoordinates()

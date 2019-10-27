@@ -1,31 +1,22 @@
 body {
     overflow: hidden;
+    position: relative;
+    float: left;
 	padding: 0;
 	margin: 10;
 	background-color: rgb(30, 30, 30);
 }
 
-#applySettingsBtn
-{
-    width: 140px;
-    margin: 10px;
+#applySettingsBtn {
+	width: 100px;
+	margin: 10px;
+	float: right;
+	color: rgb(30, 30, 30);
 }
 
-#canvas-container
-{
-    margin: 0px;
+#canvas-container {
+	margin-top: -30px;
+	margin-bottom: 10px;
+	margin-right: 20px;
+	margin-left: 0px;
 }
-
-/* .horizontalAlignment {
-    position: relative; 
-    overflow: hidden;
-    float: left;
-}
-
-.setting {
-    color: white;
-}
-
-.leftMargin {
-    margin-left: 20;
-} */

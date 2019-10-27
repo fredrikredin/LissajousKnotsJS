@@ -5,7 +5,8 @@ let orbits = [];
 let knots = [];
 
 let RADIANS = 0;
-let DELTA_RADIANS = 0.007;
+let DELTA_RADIANS = 0.01;
+let LOOP_ENABLED = true;
 let BACKGR;
 
 function setup() {
@@ -19,57 +20,75 @@ function draw() { // main p5 loop
 
 		orbits[i].updateCoordinates();
 		orbits[i].draw();
-		
+
 		var x = orbits[i].getOrbitCoordinateX();
-		
+
 		for (var j = 0; j < orbits.length; j++) {
 			var y = orbits[j].getOrbitCoordinateY();
 			knots[i][j].draw(x, y);
 		}
 	}
-	
+
 	PHI += DELTA_RADIANS;
-	
+
 	if (PHI >= 2 * PI)
-		populateCanvas();
+	{
+		if (LOOP_ENABLED)
+			populateCanvas();
+		else
+			noLoop();
+	}
 }
 
 function init() {
 	// create canvas
-	BACKGR = color(30, 30, 30); 
+	BACKGR = color(30, 30, 30);
 	canvas = createCanvas(windowWidth - 50, windowHeight - 50);
 	canvas.parent('canvas-container');
 	fill(BACKGR);
-	
+
 	// set settings
 	document.getElementById('orbitCountInput').value = orbitCount;
-    document.getElementById('frameRateInput').value = fRate;
-    document.getElementById('orbitVelocityInput').value = DELTA_RADIANS;
+	document.getElementById('frameRateInput').value = fRate;
+	document.getElementById('orbitVelocityInput').value = DELTA_RADIANS;
+	document.getElementById('loopInput').checked = LOOP_ENABLED;
 
 	// add event listeners
 	document.getElementById('applySettingsBtn').addEventListener('click', onApplySettingsClicked);
+	document.getElementById('loopInput').onclick = onLoopInputCheckChanged;
 }
 
 function onApplySettingsClicked() {
 	orbitCount = parseInt(document.getElementById('orbitCountInput').value);
-    fRate = parseInt(document.getElementById('frameRateInput').value);
-    DELTA_RADIANS = parseFloat(document.getElementById('orbitVelocityInput').value);
+	fRate = parseInt(document.getElementById('frameRateInput').value);
+	DELTA_RADIANS = parseFloat(document.getElementById('orbitVelocityInput').value);
 
 	populateCanvas();
 }
 
+function onLoopInputCheckChanged() {
+	LOOP_ENABLED = this.checked;
+
+	var loopInputText = document.getElementById('loopInputText');
+
+	if (LOOP_ENABLED)
+		loopInputText.innerText = "LOOP START ENABLED";
+	else
+		loopInputText.innerText = "LOOP START DISABLED";
+}
+
 function populateCanvas() {
 	background(BACKGR);
-    noLoop();
+	noLoop();
 
 	orbits = [];
 	knots = [];
-    PHI = 0;
+	PHI = 0;
 	frameRate(fRate);
 
 	populateOrbits();
-    populateKnots();
-    
+	populateKnots();
+
 	loop();
 }
 
