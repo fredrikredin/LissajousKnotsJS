@@ -1,10 +1,22 @@
 body {
+    overflow: hidden;
 	padding: 0;
 	margin: 10;
 	background-color: rgb(30, 30, 30);
 }
 
-.horizontalAlignment {
+#applySettingsBtn
+{
+    width: 140px;
+    margin: 10px;
+}
+
+#canvas-container
+{
+    margin: 0px;
+}
+
+/* .horizontalAlignment {
     position: relative; 
     overflow: hidden;
     float: left;
@@ -16,4 +28,4 @@ body {
 
 .leftMargin {
     margin-left: 20;
-}
+} */

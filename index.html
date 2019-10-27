@@ -1,33 +1,53 @@
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <script language="javascript" type="text/javascript" src="lib/p5.js"></script>
-    <script language="javascript" type="text/javascript" src="main.js"></script>
-    <script language="javascript" type="text/javascript" src="lissajousOrbit.js"></script>
-    <script language="javascript" type="text/javascript" src="lissajousKnot.js"></script>
-    <link rel="stylesheet" href="styles.css">
-  </head>
-  <body>
-    <div id="settingsPanel" class="horizontalAlignment">
 
-      <!-- number of orbits -->
-      <label class="setting">Number of orbits: </label>
-      
-      <input id="orbitCountInput" type="number" min="3" max="9" step="1" >
+<head>
+  <meta charset="UTF-8">
+  <script language="javascript" type="text/javascript" src="lib/p5.js"></script>
+  <script language="javascript" type="text/javascript" src="main.js"></script>
+  <script language="javascript" type="text/javascript" src="lissajousOrbit.js"></script>
+  <script language="javascript" type="text/javascript" src="lissajousKnot.js"></script>
 
-       <!-- orbit velocity -->
-       <label class="setting leftMargin">Orbit velocity: </label>
-      
-       <input id="orbitVelocityInput" type="number" min="0.001" max="0.1" step="0.001" >
-      
-      <!-- framerate -->
-      <label class="setting leftMargin">Framerate: </label>
-      
-      <input id="frameRateInput" type="number" value="20" min="0" max="60" step="10" >
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
-      <button id="applySettingsBtn" class="leftMargin">Apply</button>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div id="settingsPanel" class="row">
+
+    <!-- <label for="orbitCountInput" class="setting">Number of orbits: </label>
+        <input id="orbitCountInput" type="number" min="3" max="9" step="1" > -->
+
+    <!-- number of orbits -->
+    <div class="input-field col s2">
+      <input id="orbitCountInput" class="teal-text" placeholder="Set number of orbits" type="number"              min="3" max="9" step="1">
+      <label for="orbitCountInput">ORBITS</label>
     </div>
-    
-    <div id="canvas-container"></div>
-  </body>
+
+    <!-- <label for="orbitVelocityInput" class="setting leftMargin">Orbit velocity: </label>
+      <input id="orbitVelocityInput" type="number" min="0.001" max="0.1" step="0.001"> -->
+
+    <!-- orbit velocity -->
+    <div class="input-field col s2">
+      <input id="orbitVelocityInput" class="teal-text" placeholder="Set orbit velocity" type="number" min="0.001"
+        max="0.1" step="0.001">
+      <label for="orbitVelocityInput">VELOCITY</label>
+    </div>
+
+    <!-- <label for="framrRateInput" class="setting leftMargin">Framerate: </label>
+      <input id="frameRateInput" type="number" value="20" min="0" max="60" step="10"> -->
+    <!-- framerate -->
+    <div class="input-field col s2">
+      <input id="frameRateInput" class="teal-text" placeholder="Set framerate" type="number" min="1" max="60" step="10">
+      <label for="frameRateInput">FRAMERATE</label>
+    </div>
+
+    <button id="applySettingsBtn" class="col s4 waves-effect waves-light btn">APPLY SETTINGS</button>
+  </div>
+
+  <div id="canvas-container"></div>
+</body>
+
 </html>

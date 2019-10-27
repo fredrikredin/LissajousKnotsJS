@@ -36,7 +36,7 @@ function draw() { // main p5 loop
 
 function init() {
 	// create canvas
-	BACKGR = color(30, 30, 30);
+	BACKGR = color(30, 30, 30); 
 	canvas = createCanvas(windowWidth - 50, windowHeight - 50);
 	canvas.parent('canvas-container');
 	fill(BACKGR);
