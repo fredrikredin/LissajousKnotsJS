@@ -5,7 +5,7 @@ let orbits = [];
 let knots = [];
 
 let RADIANS = 0;
-let DELTA_RADIANS = 0.01;
+let DELTA_RADIANS = 0.007;
 let LOOP_ENABLED = true;
 let BACKGR;
 
